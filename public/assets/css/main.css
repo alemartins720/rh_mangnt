@@ -1,0 +1,24 @@
+body {
+    background-color: #eee;
+}
+
+.bg-color-1 {
+    background-color: #000000;
+}
+
+.sidebar {
+    background-color: #bbb;
+    padding: 20px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.sidebar a {
+    color: #000;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.sidebar a:hover {
+    background-color: #333;
+    color: #fff;
+}
