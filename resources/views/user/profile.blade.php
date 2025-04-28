@@ -6,26 +6,65 @@
 
         <hr>
 
-        <div class="d-flex gap-5">
-
-            <div>
-                <i class="fa-solid fa-user me-3"></i>{{  auth()->user()->name }}
-            </div>
-
-            <div>
-                <i class="fa-solid fa-user me-3"></i>{{  auth()->user()->role }}
-            </div>
-
-            <div>
-                <i class="fa-solid fa-at me-3"></i>{{  auth()->user()->email }}
-            </div>
-
-            <div>
-                <i class="fa-regular fa-calendar-days me-3"></i>{{  auth()->user()->created_at->format('d-m-Y') }}
-            </div>
-        </div>
+        <x-profile-user-data />
 
         <hr>
+
+        <div class="container-fluid m-0 p-0 mt-5">
+            <div class="row">
+                <div class="col-3">
+                    <div class="border p-5 shadow-sm">
+                        <form action="#" method="post">
+                            @csrf
+                            <h3>Change password</h3>
+        
+                            <div class="mb-3">
+                                <label for="current_password" class="form-label">Current password</label>
+                                <input type="password" name="current_password" id="current_password" class="form-control">
+                                @error('current_password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label">New password</label>
+                                <input type="password" name="new_password" id="new_password" class="form-control">
+                                @error('new_password')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+        
+                            <div class="mb-3">
+                                <label for="new_password_confirmation" class="form-label">Confirm new password</label>
+                                <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control">
+                                @error('new_password_confirmation')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+        
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Change password</button>
+                            </div>
+        
+                        </form>
+        
+                        @if (session('error'))
+                            
+                            <div class="alert alert-danger mt-3">
+                                {{ session('error') }}
+                            </div>
+                            
+                        @endif
+        
+                       @if (session('success'))
+                       <div class="alert alert-success mt-3">
+                            {{ session('success') }}
+                    </div>
+                       @endif
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
