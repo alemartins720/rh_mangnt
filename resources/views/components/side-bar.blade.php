@@ -13,7 +13,7 @@
 
     <hr>
 
-    <a href="#"><i class="fas fa-cog me-3"></i>User Profile</a>
+    <a href="{{ route('user.profile') }}"><i class="fas fa-cog me-3"></i>User Profile</a>
 
     <hr>
     {{-- Logout --}}

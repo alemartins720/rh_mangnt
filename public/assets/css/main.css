@@ -9,6 +9,7 @@ body {
 .sidebar {
 
     padding: 20px;
+    min-width: 250px !important;
    
 }
 
