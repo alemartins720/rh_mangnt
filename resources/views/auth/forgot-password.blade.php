@@ -11,6 +11,8 @@
     
                 <!-- forgot password -->
                 <div class="card p-5">
+
+                    @if(!session('status'))
     
                     <p>Para recuperar a sua senha, por favor indique o seu email. Irá receber um email com um link para recuperar a senha.</p>
     
@@ -30,6 +32,14 @@
                         </div>
     
                     </form>
+
+                    @else
+                        <div class="text-center mb-5">
+                            <p>Se está registrado nesta plataforma, irá receber um email com um link para recuperação de senha.</p>
+                            <p class="mb-5">Por favor verifique a sua caixa de correio.</p>
+                            <a href="{{ route('login') }}" class="btn btn-primary px-4">Voltar ao login</a>
+                        </div>
+                    @endif
     
                 </div>
     
