@@ -17,6 +17,8 @@
 
 <body>
 
+    <x-user-bar />
+
     {{ $slot }}
 
     <!-- resources -->
