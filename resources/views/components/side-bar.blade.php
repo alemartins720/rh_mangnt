@@ -7,7 +7,7 @@
 
     <a href="#"><i class="fas fa-user-gear me-3"></i>RH Colaborators</a>
 
-    <a href="#"><i class="fas fa-industry me-3"></i>Departments</a>
+    <a href="{{ route('departments') }}"><i class="fas fa-industry me-3"></i>Departments</a>
 
     @endcan
 
