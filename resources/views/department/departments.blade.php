@@ -9,13 +9,13 @@
         @if ($departments->count() === 0)
             <div class="text-center my-5">
                 <p>No departments found</p>
-                <a href="#" class="btn btn-primary">Create a new department</a>
+                <a href="{{ route('departments.new-department') }}" class="btn btn-primary">Create a new department</a>
             </div>
 
             @else
 
             <div class="mb-3">
-                <a href="#" class="btn btn-primary">Create a new department</a>
+                <a href="{{ route('departments.new-department') }}" class="btn btn-primary">Create a new department</a>
             </div>
 
             <table class="table w-50" id="table">

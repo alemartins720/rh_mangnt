@@ -9,6 +9,8 @@ class Department extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function users()
     {
         // Each department can be filled with multiples users
