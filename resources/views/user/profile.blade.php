@@ -15,8 +15,8 @@
 
                 <x-profile-user-change-password />
 
-                {{--  Component name and email --}}
-                <x-profile-user-change-data />
+                  {{--  Component name and email --}}
+                  <x-profile-user-change-data />
             </div>
         </div>
       
