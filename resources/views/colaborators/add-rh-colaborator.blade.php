@@ -29,6 +29,17 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+
+                            {{-- Select department  --}}
+                            <div class="mb-3">
+                                <label for="select_department" class="form-label">Department</label>
+                                <select class="form-select" name="department" id="department">
+                                    @foreach ($departments as $department )
+                                        <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
     
                             <p class="mb-3">Profile: <strong>Human Resources</strong></p>
     
