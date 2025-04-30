@@ -66,10 +66,10 @@ class DepartmentController extends Controller
             'name' => 'required|string|min:3|max:50|unique:departments,name, ' . $id
         ]);
 
-       
+
 
         // Check if id === 1
-        if(intval($id) === 1 ){
+        if (intval($id) === 1) {
             return redirect()->route('departments');
         }
 
@@ -78,6 +78,35 @@ class DepartmentController extends Controller
         $department->update([
             'name' => $request->name
         ]);
+
+        return redirect()->route('departments');
+    }
+    public function deleteDepartment($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
+
+        if (intval($id) === 1) {
+            return redirect()->route('departments');
+        }
+
+        $department = Department::findOrFail($id);
+
+        // Display page for confirmation
+        return view('department.delete-department-confirm' , compact('department'));
+    }
+
+    public function deleteDepartmentConfirm($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
+
+        
+        if (intval($id) === 1) {
+            return redirect()->route('departments');
+        }
+
+        $department = Department::findOrFail($id);
+
+        $department->delete();
 
         return redirect()->route('departments');
 
