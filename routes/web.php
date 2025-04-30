@@ -21,8 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/departments/create-department', [DepartmentController::class, 'createDepartment'])->name('departments.create-department');
     Route::get('/departments/edit-department/{id}' , [DepartmentController::class , 'editDepartment'])->name('departments.edit-department');
     Route::post('/departments/update-department' , [DepartmentController::class , 'updateDepartment'])->name('departments.update-department');
-
     Route::get('/departments/delete-department/{id}' , [DepartmentController::class , 'deleteDepartment'])->name('departments.delete-department');
-
     Route::get('/departments/delete-department-confirm/{id}' , [DepartmentController::class , 'deleteDepartmentConfirm'])->name('departments.delete-department-confirm');
+
+    // RH colaborators routes
+    Route::get('/rh-users' , [RhUserController::class , 'index'])->name('colaborators.rh-users');
 });
