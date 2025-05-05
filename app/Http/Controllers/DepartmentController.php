@@ -46,7 +46,7 @@ class DepartmentController extends Controller
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
 
         // Check if id === 1
-        if (intval($id) === 1) {
+        if ($this->isDepartmentBlocket($id)) {
             return redirect()->route('departments');
         }
 
@@ -68,8 +68,8 @@ class DepartmentController extends Controller
 
 
 
-        // Check if id === 1
-        if (intval($id) === 1) {
+
+        if ($this->isDepartmentBlocket($id)) {
             return redirect()->route('departments');
         }
 
@@ -85,22 +85,22 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
 
-        if (intval($id) === 1) {
+        if ($this->isDepartmentBlocket($id)) {
             return redirect()->route('departments');
         }
 
         $department = Department::findOrFail($id);
 
         // Display page for confirmation
-        return view('department.delete-department-confirm' , compact('department'));
+        return view('department.delete-department-confirm', compact('department'));
     }
 
     public function deleteDepartmentConfirm($id)
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
 
-        
-        if (intval($id) === 1) {
+
+        if ($this->isDepartmentBlocket($id)) {
             return redirect()->route('departments');
         }
 
@@ -109,6 +109,10 @@ class DepartmentController extends Controller
         $department->delete();
 
         return redirect()->route('departments');
+    }
 
+    private function isDepartmentBlocket($id)
+    {
+        return in_array(intval($id), [1, 2]);
     }
 }
