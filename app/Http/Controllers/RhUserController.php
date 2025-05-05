@@ -75,4 +75,33 @@ class RhUserController extends Controller
 
         return redirect()->route('colaborators.rh-users')->with('success' , 'Colaborator created successfully!');
     }
+
+    public function editRhColaborator($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
+
+        $colaborator = User::with('detail')->where('role' , 'rh')->findOrFail($id);
+
+        return view('colaborators.edit-rh-user' , compact('colaborator'));
+    }
+
+    public function updateRhColaborator(Request $request)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
+
+        // Form validation
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'salary' => 'required|decimal:2',
+            'admission_date' => 'required|Date_format:Y-m-d'
+        ]);
+
+        $user= User::findOrFail($request->user_id);
+        $user->detail->update([
+            'salary' => $request->salary,
+            'admission_date' => $request->admission_date
+        ]);
+
+        return redirect()->route('colaborators.rh-users')->with('success' , 'Colaborator updated successfully!');
+    }
 }
