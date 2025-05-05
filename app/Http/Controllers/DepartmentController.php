@@ -45,7 +45,7 @@ class DepartmentController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
 
-        // Check if id === 1
+        // Check if id === 1 e 2
         if ($this->isDepartmentBlocket($id)) {
             return redirect()->route('departments');
         }
