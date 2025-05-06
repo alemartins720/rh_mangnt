@@ -6,7 +6,7 @@
 
         <hr>
 
-        <form action="{{ route('colaborators.create-colaborator') }}" method="post">
+        <form action="{{ route('colaborators.rh.create-colaborator') }}" method="post">
 
             @csrf
 
