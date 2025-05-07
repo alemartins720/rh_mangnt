@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 
+Route::middleware('guest')->group(function(){
+     //Email confirmation and password definition
+     Route::get('/confirm-account/{token}' , [ConfirmAccountController::class , 'confirmAccount'])-> name('confirm-account');
+     Route::post('/confirm-account' , [ConfirmAccountController::class , 'confirmAccountSubmit'])-> name('confirm-account-submit');
+});
+
 
 Route::middleware('auth')->group(function () {
 
@@ -33,6 +39,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh-users/delete/{id}' , [RhUserController::class , 'deleteRhColaborator'])-> name('colaborators.rh.delete-colaborator');
     Route::get('/rh-users/delete-confirm/{id}' , [RhUserController::class , 'deleteRhColaboratorConfirm'])->name('colaborators.rh.delete-confirm');
 
-    //Email confirmation and password definition
-    Route::get('/confirm-account/{token}' , [ConfirmAccountController::class , 'confirmAccount'])-> name('confirm-account');
-});
+   });
