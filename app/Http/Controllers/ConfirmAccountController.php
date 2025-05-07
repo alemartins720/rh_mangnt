@@ -26,5 +26,13 @@ class ConfirmAccountController extends Controller
             'token' => 'required|string|size:60',
             'password' => 'required|confirmed|min:8|max:16|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
         ]);
+
+        $user = User::where('confirmation_token' , $request->token)->first();
+        $user->password = bcrypt($request->password);
+        $user->confirmation_token = null;
+        $user->email_verified_at = now();
+        $user->save();
+
+        return redirect()->route('login');
     }
 }

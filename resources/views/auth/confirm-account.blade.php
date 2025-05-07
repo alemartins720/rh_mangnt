@@ -34,7 +34,7 @@
                             @enderror
                         </div>
     
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-end align-items-center">
                             <button type="submit" class="btn btn-primary px-4">Complete</button>
                         </div>
     
