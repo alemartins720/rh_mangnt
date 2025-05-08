@@ -3,7 +3,7 @@
 
     @can('admin')
         
-    <a href="#"><i class="fas fa-users me-3"></i>Colaborators</a>
+    <a href="{{ route('colaborators.all-colaborators') }}"><i class="fas fa-users me-3"></i>Colaborators</a>
 
     <a href="{{ route('colaborators.rh-users') }}"><i class="fas fa-user-gear me-3"></i>RH Colaborators</a>
 

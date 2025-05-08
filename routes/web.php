@@ -39,4 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh-users/delete/{id}' , [RhUserController::class , 'deleteRhColaborator'])-> name('colaborators.rh.delete-colaborator');
     Route::get('/rh-users/delete-confirm/{id}' , [RhUserController::class , 'deleteRhColaboratorConfirm'])->name('colaborators.rh.delete-confirm');
 
+    // Admin colaborators list
+    Route::get('/colaborators' , [ColaboratorsController::class , 'index'])->name('colaborators.all-colaborators');
+
    });
