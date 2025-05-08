@@ -33,6 +33,6 @@ class ConfirmAccountController extends Controller
         $user->email_verified_at = now();
         $user->save();
 
-        return redirect()->route('login');
+        return view('auth.welcome')->with('user' , $user);
     }
 }
