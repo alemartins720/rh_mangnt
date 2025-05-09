@@ -42,7 +42,7 @@
                     <p>City: <strong>{{ $colaborator->detail->city }}</strong></p>
                     <p>Phone: <strong>{{ $colaborator->detail->phone }}</strong></p>
                     <p>Admission date: <strong>{{ $colaborator->detail->admission_date }}</strong></p>
-                    <p>Salary: <strong>{{ $colaborator->detail->salary }}</strong></p>
+                    <p>Salary: <strong>${{ $colaborator->detail->salary }}</strong></p>
                 </div>
             </div>
         </div>
