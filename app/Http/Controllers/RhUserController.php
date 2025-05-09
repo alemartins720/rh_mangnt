@@ -16,7 +16,8 @@ class RhUserController extends Controller
     {
         Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
 
-        $colaborators = User::with('detail')
+        $colaborators = User::withTrashed()
+                        ->with('detail')
                         ->where('role' , 'rh')
                         ->get();
 
@@ -131,5 +132,15 @@ class RhUserController extends Controller
         $colaborator->delete();
 
         return redirect()->route('colaborators.rh-users')->with('success' , 'Colaborator deleted successfully!');
+    }
+
+    public function restoreRhColaborator($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not authorized to access this page!');
+
+        $colaborator = User::withTrashed()->where('role' , 'rh')->findOrFail($id);
+        $colaborator->restore();
+
+        return redirect()->route('colaborators.rh-users')->with('success', 'Colaborator restored with success!');
     }
 }
