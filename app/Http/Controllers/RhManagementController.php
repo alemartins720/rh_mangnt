@@ -128,4 +128,13 @@ class RhManagementController extends Controller
 
         return redirect()->route('rh.management.home');
     }
+
+    public function showDetails($id)
+    {
+        Auth::user()->can('rh') ?: abort(403, 'You are not authorized to access this page!');
+
+        $colaborator = User::with('detail' , 'department')->findOrFail($id);
+
+        return view('colaborators.show-details' , compact('colaborator'));
+    }
 }
