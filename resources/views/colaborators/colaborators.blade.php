@@ -16,6 +16,12 @@
             </div>
         @else
 
+        <div class="mb-3">
+            
+            <a href= "{{ route('rh.management.new-colaborator') }}" class="btn btn-primary">Create a new colaborador</a>
+
+        </div>
+
             <table class="table" id="table">
                 <thead class="table-dark">
                     <th>Name</th>
