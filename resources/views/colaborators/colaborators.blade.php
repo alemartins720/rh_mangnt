@@ -17,7 +17,7 @@
         @else
 
         <div class="mb-3">
-            
+
             <a href= "{{ route('rh.management.new-colaborator') }}" class="btn btn-primary">Create a new colaborador</a>
 
         </div>
@@ -57,10 +57,12 @@
 
                                 <div class="d-flex gap-3 justify-content-end">
                                         @empty ($colaborator->deleted_at)
-                                        <a href="{{ route('colaborators.details' , ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark ms=3"><i class="fas fa-eye me-2"></i>Details</a>
-                                        <a href="{{ route('colaborators.delete' , ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3"><i class="fa-regular fa-trash-can me-2"></i>Delete</a>
+                                        <a href="{{ route('rh.management.edit-colaborator' , ['id' => $colaborator->id] ) }}" class="btn btn-sm btn-outline-dark ms=3"><i class="fa-regular fa-edit me-2"></i>Edit</a>
+                                        <a href="#" class="btn btn-sm btn-outline-dark ms-3"><i class="fa-regular fa-trash-can me-2"></i>Delete</a>
+                                        <a href="#" class="btn btn-sm btn-outline-dark ms=3"><i class="fas fa-eye me-2"></i>Details</a>
+                                       
                                             @else
-                                            <a href="{{ route('colaborators.restore' , ['id' => $colaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3"><i class="fa-solid fa-trash-arrow-up me-2"></i>Restore</a>
+                                            <a href="#" class="btn btn-sm btn-outline-dark ms-3"><i class="fa-solid fa-trash-arrow-up me-2"></i>Restore</a>
                                         @endif
 
                                         

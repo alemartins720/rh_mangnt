@@ -23,22 +23,22 @@ class RhManagementController extends Controller
             ->withTrashed()
             ->get();
 
-        return view('colaborators.colaborators' , compact('colaborators'));
+        return view('colaborators.colaborators', compact('colaborators'));
     }
 
     public function newColaborator()
     {
         Auth::user()->can('rh') ?: abort(403, 'You are not authorized to access thsi page!');
 
-        $departments = Department::where('id' , '>' , 2)->get();
+        $departments = Department::where('id', '>', 2)->get();
 
         // If there are no departments, abort the request
-        if($departments->count() === 0){
-            abort(403 , 'There are no departments to add a new colaborator. Please contact the system administrator to add a new department!');
+        if ($departments->count() === 0) {
+            abort(403, 'There are no departments to add a new colaborator. Please contact the system administrator to add a new department!');
         }
 
 
-        return view('colaborators.add-colaborator' , compact('departments'));
+        return view('colaborators.add-colaborator', compact('departments'));
     }
 
     public function createColaborator(Request $request)
@@ -59,7 +59,7 @@ class RhManagementController extends Controller
         ]);
 
         // Check if department id > 2
-        if($request->select_department <= 2){
+        if ($request->select_department <= 2) {
             return redirect()->route('home');
         }
 
@@ -87,9 +87,18 @@ class RhManagementController extends Controller
         ]);
 
         // Send email to user
-        Mail::to($user->email)->send(new ConfirmAccountEmail(route('confirm-account' , $token)));
+        Mail::to($user->email)->send(new ConfirmAccountEmail(route('confirm-account', $token)));
 
-        return redirect()->route('rh.management.home')->with('success' , 'Colaborator created successfully!');
+        return redirect()->route('rh.management.home')->with('success', 'Colaborator created successfully!');
     }
 
+    public function editColaborator($id) 
+    {
+        Auth::user()->can('rh') ?: abort(403, 'You are not authorized to access this page!');
+
+        $colaborator = User::with('detail')->findOrFail($id);
+        $departments = Department::where('id' , '>' , 2)->get();
+        
+        return view('colaborators.edit-colaborator' , compact('colaborator' , 'departments'));
+    }
 }
