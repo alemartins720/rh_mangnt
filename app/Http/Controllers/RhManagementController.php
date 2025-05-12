@@ -158,4 +158,15 @@ class RhManagementController extends Controller
 
         return redirect()->route('rh.management.home');
     }
+
+    public function restoreColaborator($id)
+    {
+        Auth::user()->can('rh') ?: abort(403, 'You are not authorized to access this page!');
+
+        $colaborator = User::withTrashed()->findOrFail($id);
+
+        $colaborator->restore();
+
+        return redirect()->route('rh.management.home');
+    }
 }

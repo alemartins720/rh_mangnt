@@ -58,9 +58,9 @@ Route::middleware('auth')->group(function () {
      Route::get('rh-users/management/edit-colaborator/{id}' , [RhManagementController::class , 'editColaborator'])->name('rh.management.edit-colaborator');
      Route::post('rh-users/management/update-colaborator' , [RhManagementController::class , 'updateColaborator'])->name('rh.management.update-colaborator');
      Route::get('rh-users/management/details/{id}' , [RhManagementController::class , 'showDetails'])->name('rh.management.details');
-
-     Route::get('rh-users/management/deletre/{id}' , [RhManagementController::class , 'deleteColaborator'])->name('rh.management.delete');
+     Route::get('rh-users/management/delete/{id}' , [RhManagementController::class , 'deleteColaborator'])->name('rh.management.delete');
      Route::get('rh-users/management/delete-confirm/{id}' , [RhManagementController::class , 'deleteColaboratorConfirm'])->name('rh.management.delete-confirm');
+     Route::get('rh-users/management/restore/{id}' , [RhManagementController::class , 'restoreColaborator'])->name('rh.management.restore');
 
 
      // Admin colaborators list
