@@ -50,7 +50,7 @@
 
         @if (session('success_change_address'))
             <div class="alert alert-success mt-3">
-                {{ session('success_change_data') }}
+                {{ session('success_change_address') }}
             </div>
         @endif
 
