@@ -13,10 +13,14 @@
         <div class="container-fluid m-0 p-0 mt-5">
             <div class="row">
 
-                <x-profile-user-change-password />
+                 {{-- Component password --}}
+                  <x-profile-user-change-password />
 
                   {{--  Component name and email --}}
                   <x-profile-user-change-data />
+
+                  {{-- Component address --}}
+                  <x-profile-user-change-address/>
             </div>
         </div>
       
