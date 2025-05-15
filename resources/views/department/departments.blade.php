@@ -16,7 +16,7 @@
                 <a href="{{ route('departments.new-department') }}" class="btn btn-primary">Create a new department</a>
             </div>
 
-            <table class="table w-50" id="table">
+            <table class="table" id="table">
                 <thead class="table-dark">
                     <th>Departments</th>
                     <th></th>
