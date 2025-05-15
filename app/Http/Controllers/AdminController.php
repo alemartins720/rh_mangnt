@@ -28,6 +28,8 @@ class AdminController extends Controller
                 return $colaborator->detail->salary;
             });
 
+            $data['total_salary'] = number_format($data['total_salary'] , 2 , ',' , '.') . ' $';
+
         // Total colaborators by department
         $data['total_colaborators_per_department'] = User::withoutTrashed()
             ->with('department')
@@ -54,8 +56,8 @@ class AdminController extends Controller
                 ];
             });
 
-
+            
         // Display admin home page
-        return view('home' , compact($data));
+        return view('home' , compact('data'));
     }
 }
