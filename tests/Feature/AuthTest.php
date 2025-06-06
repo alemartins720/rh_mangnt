@@ -16,3 +16,8 @@ it('Display the logon page when not logged in', function () {
     // Verifica se a página de login contém o texto "Esqueceu a sua senha?"
     expect($this->get('/login')->content())->toContain("Esqueceu a sua senha?");
 });
+
+it('Display the recover password page correctly', function () {
+    expect($this->get('/forgot-password')->status())->toBe(200);
+    expect($this->get('/forgot-password')->content())->toContain("Já sei a minha senha?");
+});
