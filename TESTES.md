@@ -5,7 +5,7 @@
 - [OK] Testar a rota inicial como sendo a página de login
 - [OK] Testar a rota de recuperação de senha
 - [OK] Testar processo de login com sucesso para o perfil de admin
-- [] Testar processo de login com sucesso para o perfil de RH
+- [OK] Testar processo de login com sucesso para o perfil de RH
 - [] Testar processo de login com sucesso para o perfil de Colaborador
 
 - [] Testar a inserção de um novo user RH com o perfil de admin
