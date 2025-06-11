@@ -11,7 +11,7 @@
 - [OK] Testar a inserção de um novo user RH com o perfil de admin
 - [OK] Testar a inserção de um novo colaborador com perfil de RH
 
-- [] Testar se um admin, após login com sucesso, consegue ver a página de colaboradores rh
+- [OK] Testar se um admin, após login com sucesso, consegue ver a página de colaboradores rh
 - [] Testar se, sem usuário logado, é possível acessar a pagina Home
 - [] Testar se, com usuário logado, é possível acessar a pagina de Login
 - [] Testar se, estando logado, é possível acessar a pagina de recuperação de senha
