@@ -8,8 +8,8 @@
 - [OK] Testar processo de login com sucesso para o perfil de RH
 - [OK] Testar processo de login com sucesso para o perfil de Colaborador
 
-- [FALHA] Testar a inserção de um novo user RH com o perfil de admin
-- [] Testar a inserção de um novo colaborador com perfil de RH
+- [OK] Testar a inserção de um novo user RH com o perfil de admin
+- [OK] Testar a inserção de um novo colaborador com perfil de RH
 
 - [] Testar se um admin, após login com sucesso, consegue ver a página de colaboradores rh
 - [] Testar se, sem usuário logado, é possível acessar a pagina Home

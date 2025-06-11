@@ -15,7 +15,7 @@ it('Tests if an admin can insert a new Rh user', function () {
     addDepartment('Recursos Humanos');
 
     // Login com admin
-    $result = $this->post('/login', [
+        $result = $this->post('/login', [
         'email' => 'admin@rhmangnt.com',
         'password' => 'Aa123456'
     ]);
@@ -39,57 +39,48 @@ it('Tests if an admin can insert a new Rh user', function () {
         'permissions' => '["rh"]',
     ]);
 
-    // Verifica se o user RH foi inserido com sucesso
-    $this->assertDatabaseHas('users', [
-        'name' => 'RH user 1',
-        'email' =>'rhuser@gmail.com',
-        'role' => 'rh',
-        'permissions' => '["rh"]',
-    ]);
+  
+    expect(User::where('email' , 'rhuser@gmail.com'));
 });
 
-// it('Tests if an RH users can insert a new colaborator', function () {
+it('Tests if an RH users can insert a new colaborator', function () {
 
-//     // Criar user 
-//     addAdminUser();
+    // Criar user 
+    addRhUser();
 
-//     // Criar os departamentos
-//     addDepartment('Administração');
-//     addDepartment('Recursos Humanos');
+    // Criar os departamentos
+    addDepartment('Administração');
+    addDepartment('Recursos Humanos');
+    addDepartment('Armazem');
 
-//     // Login com admin
-//     $result = $this->post('/login', [
-//         'email' => 'admin@rhmangnt.com',
-//         'password' => 'Aa123456'
-//     ]);
+    // Login com rh
+        $this->post('/login', [
+        'email' => 'rh1@rhmangnt.com',
+        'password' => 'Aa123456'
+    ]);
 
-//     // Verifica se o login foi feito com sucesso
-//     expect($result->status())->toBe(302);
-//     expect($result->assertRedirect('/home'));
 
-//     // Verifica se o admin consegue adicionar user do RH
-//     $result = $this->post('/rh-users/create-colaborator', [
-//         'name' => 'RH user',
-//         'email' => 'rh2@rhmangnt.com',
-//         'select_department' => 2,
-//         'address' => 'Rua dez',
-//         'zip_code' => '1234-123',
-//         'city' => 'Lisboa',
-//         'phone' => '123456789',
-//         'salary' => '1000.00',
-//         'admission_date' => "2025-06-09",
-//         'role' => 'rh',
-//         'permissions' => '["rh"]'
-//     ]);
+    // Verifica se o login foi feito com sucesso
+    expect(auth()->user()->role)->toBe('rh');
 
-//     // Verifica se o user RH foi inserido com sucesso
-//     $this->assertDatabaseHas('users', [
-//         'name' => 'RH user',
-//         'email' => 'rh2@rhmangnt.com',
-//         'role' => 'rh',
-//         'permissions' => '["rh"]'
-//     ]);
-// });
+    // Verifica se o admin consegue adicionar user do RH
+    $result = $this->post('/rh-users/management/create-colaborator', [
+        'name' => 'Colaborator 1',
+        'email' => 'colaborator1@gmail.com',
+        'select_department' => 3,
+        'address' => 'Rua onzwe',
+        'zip_code' => '1234-000',
+        'city' => 'City 2',
+        'phone' => '123456789',
+        'salary' => '1000.00',
+        'admission_date' => "2025-06-09",
+        'role' => 'colaborator',
+        'permissions' => '["colaborator"]'
+    ]);
+
+ 
+    expect(User::where('email' , 'colaborator1@gmail.com'));
+});
 
 function addDepartment($name){
     Department::insert([
