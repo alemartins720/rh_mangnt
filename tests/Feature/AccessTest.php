@@ -14,7 +14,7 @@ it('Tests is an admin user can see the RH users page', function () {
     expect($this->get('/rh-users')->status())->toBe(200);
 });
 
-it('Tests if is not possible to acces the home page without logged user' , function(){
+it('Tests if is not possible to acces the home page without logged user', function () {
 
     // Verifica se é possível acessar a home page
     expect($this->get('/home')->status())->toBe(302);
@@ -22,5 +22,15 @@ it('Tests if is not possible to acces the home page without logged user' , funct
     // ou
 
     expect($this->get('/home')->status())->not()->toBe(200);
+});
 
+it('Tests if user logged in can access to the login page', function () {
+
+    //Adicionar admin a base de dados
+    addAdminUser();
+
+    // Verifica se está logado
+    auth()->loginUsingId(1);
+
+    expect($this->get('/login')->status())->not()->toBe(200);
 });

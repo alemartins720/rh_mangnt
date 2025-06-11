@@ -13,7 +13,7 @@
 
 - [OK] Testar se um admin, após login com sucesso, consegue ver a página de colaboradores rh
 - [OK] Testar se, sem usuário logado, é possível acessar a pagina Home
-- [] Testar se, com usuário logado, é possível acessar a pagina de Login
+- [OK] Testar se, com usuário logado, é possível acessar a pagina de Login
 - [] Testar se, estando logado, é possível acessar a pagina de recuperação de senha
 
 
