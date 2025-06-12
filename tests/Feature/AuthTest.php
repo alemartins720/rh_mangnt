@@ -1,0 +1,129 @@
+<?php
+
+use App\Models\User;
+
+use Egulias\EmailValidator\Result\Reason\ExpectingATEXT;
+
+it('Display the logon page when not logged in', function () {
+
+    // Verifica no contexto do Fortify, se ao entrar na página inicial, vai ser redirecionado para a página de login
+    $result = $this->get('/')->assertRedirect('/login');
+
+    // Verificar se o resultado é 302
+    expect($result->status())->toBe(302);
+
+    // Verifica  se a rota de login é acessível com status 200
+    expect($this->get('/login')->status())->toBe(200);
+
+    // Verifica se a página de login contém o texto "Esqueceu a sua senha?"
+    expect($this->get('/login')->content())->toContain("Esqueceu a sua senha?");
+});
+
+it('Display the recover password page correctly', function () {
+    expect($this->get('/forgot-password')->status())->toBe(200);
+    expect($this->get('/forgot-password')->content())->toContain("Já sei a minha senha?");
+});
+
+it('Test if an admin user can login with success' , function(){
+
+    // Criar um admin
+    addAdminUser();
+
+    // Login com o admin criado
+    $result = $this->post('/login' , [
+        'email' => 'admin@rhmangnt.com',
+        'password' => 'Aa123456'
+    ]);
+
+    // Verifica se o login foi feito com sucesso
+    expect($result->status())->toBe(302);
+    expect($result->assertRedirect('/home'));
+});
+
+it('Test if an RH user can login with success' , function(){
+
+    // Criar um colaborador de RH
+    addRhUser();
+
+    // Login com o colaborador de RH
+    $result = $this->post('/login' , [
+        'email' => 'rh1@rhmangnt.com',
+        'password' => 'Aa123456'
+    ]);
+
+    // Verifica se o login foi feito con sucesso
+    expect($result->status())->toBe(302);
+    expect($result->assertRedirect('/home'));
+
+    // Verifica se o colaborador RH consegue acesso a pagina exclusiva
+    expect($this->get('/rh-users/management/home')->status())->toBe(200);
+
+});
+
+it('Test if an colaborator user can login with success' , function(){
+
+    // Criar um colaborador user
+    addColaboratorUser();
+
+    // Login com o colaborador comum
+    $result = $this->post('/login' , [
+        'email' => 'colaborator@rhmangnt.com',
+        'password' => 'Aa123456'
+    ]);
+
+    // Verifica se o login foi feito com sucesso
+    expect($result->status())->toBe(302);
+    expect($result->assertRedirect('/home'));
+
+  // Verifica se o colaborador NÃO consegue chegar a uma rota exclusiva dos admin
+    expect($this->get('/departments')->status())->not()->toBe(200);
+});
+
+
+
+function addAdminUser(){
+    //Create Admin User
+      User::insert([
+        'department_id' => 1,   // Administração
+            'name' => 'Administrador',
+            'email' => 'admin@rhmangnt.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('Aa123456'),
+            'role' => 'admin',
+            'permissions' => '["admin"]',
+            'created_at' => now(),
+            'updated_at' => now(),
+    ]);
+}
+
+function addRhUser(){
+    //Create RH user
+      User::insert([
+        'department_id' => 2,   // RH
+            'name' => 'Colaborador de RH',
+            'email' => 'rh1@rhmangnt.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('Aa123456'),
+            'role' => 'rh',
+            'permissions' => '["rh"]',
+            'created_at' => now(),
+            'updated_at' => now(),
+    ]);
+}
+
+function addColaboratorUser(){
+    //Create Colaborator user
+      User::insert([
+        'department_id' => 3,   // Colaborator
+            'name' => 'Colaborador Comum',
+            'email' => 'colaborator@rhmangnt.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('Aa123456'),
+            'role' => 'colaborator',
+            'permissions' => '["colaborator"]',
+            'created_at' => now(),
+            'updated_at' => now(),
+    ]);
+}
+
+
